@@ -1,14 +1,14 @@
 <?php
-    require 'Titulaire.php';
+   // require 'Titulaire.php';
 
     class Compte{
         //---Attributs
-        private string $_libelle;
-        private int $_solde;
-        private string $_devise;
-        private Titulaire $_titulaire;
+        protected string $_libelle;
+        protected float $_solde;
+        protected string $_devise;
+        protected Titulaire $_titulaire;
         //---magical
-        public function __contruct(string $libelle, int $soldeInitial, string $devise, Titulaire $titulaire){
+        public function __construct(string $libelle, float $soldeInitial, string $devise, Titulaire $titulaire){
             $this->_libelle = $libelle;
             $this->_solde = $soldeInitial;
             $this->_devise = $devise;
@@ -19,16 +19,16 @@
             return "Compte de type $this->_libele appartenant à ".$this->_titulaire->getNom();
         }
         //---setter
-        public function set_libelle($_libelle){
-                $this->_libelle = $_libelle;
+        public function set_libelle($libelle){
+                $this->_libelle = $libelle;
                 return $this;
         }
-        public function set_solde($_solde){
-                $this->_solde = $_solde;
+        public function set_solde($solde){
+                $this->_solde = $solde;
                 return $this;
         }
-        public function set_devise($_devise){
-                $this->_devise = $_devise;
+        public function set_devise($devise){
+                $this->_devise = $devise;
                 return $this;
         }
         //---getter
@@ -45,6 +45,15 @@
                 return $this->_titulaire;
         }
         //---méthodes
-        
-
+        public function crediter(float $creditEuros){
+                return $this->_solde += $creditEuros;
+        }
+        public function debiter(float $debitEuros){
+                return $this->_solde -= $debitEuros;
+        }
+        public function virement(Compte $aCrediter, float $montant){
+                $this->debiter($montant);
+                $aCrediter->crediter($montant);
+                return "OK";
+        }
     }

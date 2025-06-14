@@ -27,6 +27,26 @@
 
 <?php
 
+
 require 'Titulaire.php';
 require 'Compte.php';
 
+$moi = new Titulaire("GRELL", "Thierry", "07/03/1983", "Mulhouse");
+$toi = new Titulaire("WIRTZ", "Sophie", "26/11/1986", "Mulhouse");
+
+$livretA1 = new Compte("Livret A", 1234.56, "Euros", $moi); /*ct(string $libelle, float $soldeInitial, string $devise, Titulaire $titulaire){*/
+$livretA2 = new Compte("Livret A", 22579.3, "Euros", $toi);
+$devise1 = new Compte("Compte en devise", 159566, "USD", $moi);
+$courant = new Compte("Compte Courant", 37.51, "Euros", $toi);
+
+var_dump($moi);
+var_dump($toi);
+
+$livretA2->virement($livretA1, 10000);
+
+var_dump($moi);
+/*var_dump($toi);
+
+var_dump($livretA1);
+*/
+var_dump($moi->ageTitulaire());

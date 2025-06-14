@@ -1,6 +1,6 @@
 <?php
 
-    require 'Compte.php';
+   // require 'Compte.php';
 
     class Titulaire{
         //---Attribut
@@ -8,14 +8,14 @@
         private string $_prenom;
         private DateTime $_dateNaissance;
         private string $_ville;
-        private array $_listeComptes;
+        protected array $_listeComptes;
         //---magical
-        public function __contruct(string $nom, string $prenom, DateTime $dateNaissance, string $ville){
+        public function __construct(string $nom, string $prenom, string $dateNaissance, string $ville){
             $this->_nom = $nom;
             $this->_prenom = $prenom;
-            $this->_dateNaissance = $dateNaissance;
-            $this->$_ville = $ville;
-            $this->_listComptes = [];
+            $this->_dateNaissance = DateTime::CreateFromFormat('d/m/Y' , $dateNaissance);
+            $this->_ville = $ville;
+            $this->_listeComptes = [];
         }
         public function __toString(){
             return $this->_prenom." ".$this->_nom." existe.";
@@ -55,11 +55,12 @@
         }
         //---méthodes
         public function ajouterCompte(Compte $compte){
-            ///à revoir
+            array_push($this->_listeComptes,(array) $compte);
             return $this;
         }
-        public function ageTitulaire() : int { //int ??
-            
-            return 1;
+        public function ageTitulaire() : int { 
+            $today = new DateTime;
+            $age = $today->diff($this->_dateNaissance);
+            return $age->y;
         }
     }
