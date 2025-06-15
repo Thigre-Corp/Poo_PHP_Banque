@@ -7,6 +7,7 @@
         protected float $_solde;
         protected string $_devise;
         protected Titulaire $_titulaire;
+        private int $indexCompte; // provision pour mettre à jour la liste des comptes chez le titulaire
         //---magical
         public function __construct(string $libelle, float $soldeInitial, string $devise, Titulaire $titulaire){
             $this->_libelle = $libelle;
@@ -14,6 +15,7 @@
             $this->_devise = $devise;
             $this->_titulaire = $titulaire;
             $titulaire->ajouterCompte($this);
+            $this->indexCompte =  count($titulaire->get_listeComptes())-1;
         }
         public function __toString(){
             return "Compte de type $this->_libele appartenant à ".$this->_titulaire->getNom();

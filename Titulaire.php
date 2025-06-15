@@ -8,7 +8,7 @@
         private string $_prenom;
         private DateTime $_dateNaissance;
         private string $_ville;
-        protected array $_listeComptes;
+        private array $_listeComptes;
         //---magical
         public function __construct(string $nom, string $prenom, string $dateNaissance, string $ville){
             $this->_nom = $nom;
@@ -50,7 +50,7 @@
         public function get_ville(){
                 return $this->_ville;
         }
-        public function get_listeComptes(){
+        public function get_listeComptes() : array{
                 return $this->_listeComptes;
         }
         //---méthodes
