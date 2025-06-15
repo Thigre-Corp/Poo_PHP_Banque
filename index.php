@@ -31,8 +31,8 @@
 require 'Titulaire.php';
 require 'Compte.php';
 
-$moi = new Titulaire("GRELL", "Thierry", "07/03/1983", "Mulhouse");
-$toi = new Titulaire("WIRTZ", "Sophie", "26/11/1986", "Mulhouse");
+$moi = new Titulaire("ONO", "YOKO", "10/10/1945", "KYOTO");
+$toi = new Titulaire("LENNON", "JOHN", "10/10/1942", "LONDON");
 
 $livretA1 = new Compte("Livret A", 1234.56, "Euros", $moi); /*ct(string $libelle, float $soldeInitial, string $devise, Titulaire $titulaire){*/
 $livretA2 = new Compte("Livret A", 22579.3, "Euros", $toi);
